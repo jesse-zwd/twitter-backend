@@ -1,0 +1,459 @@
+definitions:
+  service.CreateCommentService:
+    properties:
+      text:
+        type: string
+      tweet_id:
+        type: integer
+    required:
+    - text
+    - tweet_id
+    type: object
+  service.CreateTweetService:
+    properties:
+      files:
+        items:
+          properties:
+            url:
+              type: string
+          type: object
+        type: array
+      tags:
+        type: string
+      text:
+        type: string
+    required:
+    - text
+    type: object
+  service.DataList:
+    properties:
+      items:
+        type: object
+      total:
+        type: integer
+    type: object
+  service.FollowService:
+    properties:
+      following:
+        type: integer
+    required:
+    - following
+    type: object
+  service.LikeService:
+    properties:
+      tweet_id:
+        type: integer
+    required:
+    - tweet_id
+    type: object
+  service.Response:
+    properties:
+      code:
+        type: integer
+      data:
+        type: object
+      error:
+        type: string
+      msg:
+        type: string
+    type: object
+  service.RetweetService:
+    properties:
+      tweet_id:
+        type: integer
+    required:
+    - tweet_id
+    type: object
+  service.UpdateUserService:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      coverPhoto:
+        type: string
+      location:
+        type: string
+      nickname:
+        type: string
+      website:
+        type: string
+    type: object
+  service.UserLoginService:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  service.UserRegisterService:
+    properties:
+      email:
+        type: string
+      nickname:
+        type: string
+      password:
+        type: string
+      password_confirm:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - nickname
+    - password
+    - password_confirm
+    - username
+    type: object
+info:
+  contact: {}
+paths:
+  /comment/:id:
+    delete:
+      consumes:
+      - application/json
+      description: comment delete
+      operationId: /comment/:id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: comment delete
+      tags:
+      - Comment API
+  /comments:
+    post:
+      consumes:
+      - application/json
+      description: comment create
+      operationId: /comments
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateCommentService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: comment create
+      tags:
+      - Comment API
+  /follow:
+    delete:
+      consumes:
+      - application/json
+      description: follow delete
+      operationId: /follow
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: follow delete
+      tags:
+      - Follow API
+    post:
+      consumes:
+      - application/json
+      description: follow create
+      operationId: /follow
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.FollowService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: follow create
+      tags:
+      - Follow API
+  /like:
+    post:
+      consumes:
+      - application/json
+      description: like create
+      operationId: /like
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.LikeService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: like create
+      tags:
+      - Like API
+  /like/:id:
+    delete:
+      consumes:
+      - application/json
+      description: like delete
+      operationId: /like/:id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: like delete
+      tags:
+      - Like API
+  /retweet:
+    post:
+      consumes:
+      - application/json
+      description: retweet create
+      operationId: /retweet
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.RetweetService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: retweet create
+      tags:
+      - Retweet API
+  /retweet/:id:
+    delete:
+      consumes:
+      - application/json
+      description: retweet delete
+      operationId: /retweet/:id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: retweet delete
+      tags:
+      - Retweet API
+  /tweet/:id:
+    delete:
+      consumes:
+      - application/json
+      description: tweet delete
+      operationId: /tweet/:id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: tweet delete
+      tags:
+      - Tweet API
+    get:
+      consumes:
+      - application/json
+      description: tweet by id
+      operationId: /tweet/:id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: tweet by id
+      tags:
+      - Tweet API
+  /tweets:
+    get:
+      consumes:
+      - application/json
+      description: tweet list
+      operationId: /tweets
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: tweet list
+      tags:
+      - Tweet API
+    post:
+      consumes:
+      - application/json
+      description: tweet create
+      operationId: /tweets
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateTweetService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: tweet create
+      tags:
+      - Tweet API
+  /user/:id:
+    get:
+      consumes:
+      - application/json
+      description: user profile
+      operationId: /user/:id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user profile
+      tags:
+      - User API
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: user login
+      operationId: /user/login
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.UserLoginService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user login
+      tags:
+      - User API
+  /user/logout:
+    delete:
+      consumes:
+      - application/json
+      description: user logout
+      operationId: /user/logout
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user logout
+      tags:
+      - User API
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: user register
+      operationId: /user/register
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.UserRegisterService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user register
+      tags:
+      - User API
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: user list
+      operationId: /users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/service.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/service.DataList'
+              type: object
+      summary: user list
+      tags:
+      - User API
+    put:
+      consumes:
+      - application/json
+      description: user update
+      operationId: /users
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.UpdateUserService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user update
+      tags:
+      - User API
+swagger: "2.0"
