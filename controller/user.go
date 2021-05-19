@@ -118,3 +118,17 @@ func UpdateUser(c *gin.Context) {
 		c.JSON(200, ErrorResponse(err))
 	}
 }
+
+// SearchUser godoc
+// @Summary user search
+// @Description user search
+// @Tags User API
+// @ID /searchUser/:searchItem
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} service.Response{} "success"
+// @Router /searchUser/:searchItem [get]
+func SearchUser(c *gin.Context) {
+	res := service.SearchUser(c, c.Param("searchItem"))
+	c.JSON(200, res)
+}

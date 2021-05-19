@@ -266,6 +266,54 @@ paths:
       summary: retweet delete
       tags:
       - Retweet API
+  /searchTweetByTags/:searchItem:
+    get:
+      consumes:
+      - application/json
+      description: tweet search by tags
+      operationId: /searchTweetByTags/:searchItem
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: tweet search by tags
+      tags:
+      - Tweet API
+  /searchTweetByText/:searchItem:
+    get:
+      consumes:
+      - application/json
+      description: tweet search by text
+      operationId: /searchTweetByText/:searchItem
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: tweet search by text
+      tags:
+      - Tweet API
+  /searchUser/:searchItem:
+    get:
+      consumes:
+      - application/json
+      description: user search
+      operationId: /searchUser/:searchItem
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user search
+      tags:
+      - User API
   /tweet/:id:
     delete:
       consumes:
@@ -335,6 +383,29 @@ paths:
       summary: tweet create
       tags:
       - Tweet API
+  /user:
+    put:
+      consumes:
+      - application/json
+      description: user update
+      operationId: /user
+      parameters:
+      - description: body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.UpdateUserService'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            $ref: '#/definitions/service.Response'
+      summary: user update
+      tags:
+      - User API
   /user/:id:
     get:
       consumes:
@@ -432,28 +503,6 @@ paths:
                   $ref: '#/definitions/service.DataList'
               type: object
       summary: user list
-      tags:
-      - User API
-    put:
-      consumes:
-      - application/json
-      description: user update
-      operationId: /users
-      parameters:
-      - description: body
-        in: body
-        name: body
-        required: true
-        schema:
-          $ref: '#/definitions/service.UpdateUserService'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: success
-          schema:
-            $ref: '#/definitions/service.Response'
-      summary: user update
       tags:
       - User API
 swagger: "2.0"

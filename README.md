@@ -1,6 +1,6 @@
 # A backend of a twitter-like fullstack project
 
-This is a backend of a twitter-like fullstack project using React, Gin, Gorm, Postgresql. Here is the frontend: https://github.com/jesse-zwd/twitter-frontend
+This is a backend of a twitter-like fullstack project using React, Gin, Gorm, Redis, Postgresql. Here is the frontend: https://github.com/jesse-zwd/twitter-frontend
 
 ## Run it locally
 

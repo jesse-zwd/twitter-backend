@@ -236,3 +236,41 @@ func GetTweetByID(c *gin.Context, id string) Response {
 		Msg:  "got tweet by ID",
 	}
 }
+
+func SearchTweetByText(c *gin.Context, searchItem string) Response {
+	tweets := []model.Tweet{}
+	err := global.GORM_DB.Where("text Like ?", "%"+searchItem+"%").Find(&tweets).Order("created_at desc").Error
+	if err != nil {
+		return Response{
+			Code:  50001,
+			Msg:   "database connection error",
+			Error: err.Error(),
+		}
+	}
+
+	apiTweets := BuildAPITweets(c, tweets)
+
+	return Response{
+		Data: apiTweets,
+		Msg: "got searched tweets",
+	}
+}
+
+func SearchTweetByTags(c *gin.Context, searchItem string) Response {
+	tweets := []model.Tweet{}
+	err := global.GORM_DB.Where("tags Like ?", "%"+searchItem+"%").Find(&tweets).Order("created_at desc").Error
+	if err != nil {
+		return Response{
+			Code:  50001,
+			Msg:   "database connection error",
+			Error: err.Error(),
+		}
+	}
+
+	apiTweets := BuildAPITweets(c, tweets)
+
+	return Response{
+		Data: apiTweets,
+		Msg: "got searched tweets",
+	}
+}

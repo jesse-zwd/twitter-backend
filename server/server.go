@@ -61,12 +61,15 @@ func NewRouter() *gin.Engine {
 			auth.DELETE("user/logout", controller.UserLogout)
 			auth.GET("user/:id", controller.UserProfile)
 			auth.PUT("user", controller.UpdateUser)
+			auth.GET("searchUser/:searchItem", controller.SearchUser)
 
 			// tweet
 			auth.POST("tweets", controller.CreateTweet)
 			auth.GET("tweets", controller.ListTweet)
 			auth.DELETE("tweet/:id", controller.DeleteTweet)
 			auth.GET("tweet/:id", controller.TweetByID)
+			auth.GET("searchTweetByTags/:searchItem", controller.SearchTweetByTags)
+			auth.GET("searchTweetByText/:searchItem", controller.SearchTweetByText)
 
 			// comment
 			auth.POST("comments", controller.CreateComment)

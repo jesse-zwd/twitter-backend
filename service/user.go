@@ -338,3 +338,26 @@ func GetProfile(c *gin.Context, user_id string) Response {
 		Msg:  "got profile",
 	}
 }
+
+func SearchUser(c *gin.Context, searchItem string) Response {
+	users := []model.User{}
+	apiListUsers := []APIListUser{}
+
+	if err := global.GORM_DB.Where("user_name Like ?", "%"+searchItem+"%").Or("nickname Like ?", "%"+searchItem+"%").Find(&users).Error; err != nil {
+		return Response{
+			Code:  50001,
+			Msg:   "database connection error",
+			Error: err.Error(),
+		}
+	}
+
+	for _, user := range users {
+		apiListUser := BuildAPIListUser(c, user)
+		apiListUsers = append(apiListUsers, apiListUser)
+	}
+
+	return Response{
+		Data: apiListUsers,
+		Msg:  "Got searched users",
+	}
+}

@@ -73,3 +73,31 @@ func TweetByID(c *gin.Context) {
 	res := service.GetTweetByID(c, c.Param("id"))
 	c.JSON(200, res)
 }
+
+// SearchTweetByText godoc
+// @Summary tweet search by text
+// @Description tweet search by text
+// @Tags Tweet API
+// @ID /searchTweetByText/:searchItem
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} service.Response{} "success"
+// @Router /searchTweetByText/:searchItem [get]
+func SearchTweetByText(c *gin.Context) {
+	res := service.SearchTweetByText(c, c.Param("searchItem"))
+	c.JSON(200, res)
+}
+
+// SearchTweetByTags godoc
+// @Summary tweet search by tags
+// @Description tweet search by tags
+// @Tags Tweet API
+// @ID /searchTweetByTags/:searchItem
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} service.Response{} "success"
+// @Router /searchTweetByTags/:searchItem [get]
+func SearchTweetByTags(c *gin.Context) {
+	res := service.SearchTweetByTags(c, c.Param("searchItem"))
+	c.JSON(200, res)
+}

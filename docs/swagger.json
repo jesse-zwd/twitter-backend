@@ -238,6 +238,78 @@
                 }
             }
         },
+        "/searchTweetByTags/:searchItem": {
+            "get": {
+                "description": "tweet search by tags",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tweet API"
+                ],
+                "summary": "tweet search by tags",
+                "operationId": "/searchTweetByTags/:searchItem",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/service.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/searchTweetByText/:searchItem": {
+            "get": {
+                "description": "tweet search by text",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tweet API"
+                ],
+                "summary": "tweet search by text",
+                "operationId": "/searchTweetByText/:searchItem",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/service.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/searchUser/:searchItem": {
+            "get": {
+                "description": "user search",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User API"
+                ],
+                "summary": "user search",
+                "operationId": "/searchUser/:searchItem",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/service.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/tweet/:id": {
             "get": {
                 "description": "tweet by id",
@@ -328,6 +400,41 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/service.CreateTweetService"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/service.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "put": {
+                "description": "user update",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User API"
+                ],
+                "summary": "user update",
+                "operationId": "/user",
+                "parameters": [
+                    {
+                        "description": "body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/service.UpdateUserService"
                         }
                     }
                 ],
@@ -490,39 +597,6 @@
                                     }
                                 }
                             ]
-                        }
-                    }
-                }
-            },
-            "put": {
-                "description": "user update",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "User API"
-                ],
-                "summary": "user update",
-                "operationId": "/users",
-                "parameters": [
-                    {
-                        "description": "body",
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/service.UpdateUserService"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "schema": {
-                            "$ref": "#/definitions/service.Response"
                         }
                     }
                 }
