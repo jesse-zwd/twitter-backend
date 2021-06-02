@@ -13,8 +13,7 @@ require (
 	github.com/swaggo/gin-swagger v1.3.0
 	github.com/swaggo/swag v1.7.0
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
-	gopkg.in/go-playground/validator.v9 v9.29.1
-	gopkg.in/yaml.v2 v2.4.0
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/driver/postgres v1.1.0
 	gorm.io/gorm v1.21.9
 )
